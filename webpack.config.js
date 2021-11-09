@@ -41,6 +41,18 @@ module.exports = {
         test: /\.(css)$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
+      {
+        test: /\.(s[ca]ss)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+        ],
+      },
     ],
   },
 };
+
+// если у лоадеров нет дополнительных настроек
+// можно передавать просто массив с названиями
+// use: [ 'style-loader', 'css-loader', 'sass-loader']
