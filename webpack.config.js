@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniSccExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -41,12 +42,15 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: [
+          { loader: MiniSccExtractPlugin.loader },
+          { loader: 'css-loader' },
+        ],
       },
       {
         test: /\.(s[ca]ss)$/,
         use: [
-          { loader: 'style-loader' },
+          { loader: MiniSccExtractPlugin.loader },
           { loader: 'css-loader' },
           { loader: 'sass-loader' },
         ],
@@ -57,6 +61,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Hello, World',
       template: 'index.html',
+    }),
+    new MiniSccExtractPlugin({
+      filename: 'main-[hash:8].css',
     }),
   ],
 };
