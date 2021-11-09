@@ -1,8 +1,7 @@
-import Log from './log';
-import Calc from './calc';
-import img from './react.png';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './main.css';
 
-const log = new Log();
-const calc = new Calc();
+const App = () => <h1>Hello, World!</h1>;
 
-log.log(calc.add(1, 2, 3));
+ReactDOM.render(<App />, document.getElementById('root'));
