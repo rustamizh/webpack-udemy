@@ -1,4 +1,25 @@
 {
-  "presets": ["@babel/preset-env"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "debug": true,
+        "targets": [
+          "last 2 chrome versions",
+          "last 2 chrome versions",
+          "last 2 ios versions"
+        ]
+      }
+    ]
+  ],
   "plugins": []
 }
+
+// для того, чтобы узнать какие браузеры
+// включены в последние n версий
+// можно использовать https://browserl.ist/
+
+// также массив с поддерживаемыми браузерами
+// можно указывть в package.json
+// в разделе browserlist
+// или создать отдельный файл .browserlistrc
