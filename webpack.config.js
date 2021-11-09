@@ -66,6 +66,9 @@ module.exports = {
       filename: 'main-[hash:8].css',
     }),
   ],
+  devServer: {
+    open: true,
+  },
 };
 
 // если у лоадеров нет дополнительных настроек
