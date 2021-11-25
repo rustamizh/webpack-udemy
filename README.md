@@ -51,6 +51,7 @@ module.exports = {
 - [babel-loader](#babel-loader)
 - [css-loader](#css-loader)
 - [style-loader](#style-loader)
+- [sass-loader](#sass-loader)
 
 ### <a name="file-loader"></a> file-loader
 
