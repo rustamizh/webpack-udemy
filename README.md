@@ -48,6 +48,9 @@ module.exports = {
 ### Список популярных Webpack Loaders
 
 - [file-loader](#file-loader)
+- [babel-loader](#babel-loader)
+- [css-loader](#css-loader)
+- [style-loader](#style-loader)
 
 ### <a name="file-loader"></a> file-loader
 
@@ -98,3 +101,124 @@ module.exports = {
 - **use** - массив, содержащий список лоадеров, которые последовательно (справа налево) применятся к описанным файлам;
 - **outputPath** - название директории, которую создаст лоадер для скомпилированных файлов;
 - **name** - имя выходного файла, с возможностью параметризации названия;
+
+### <a name="babel-loader"></a> babel-loader
+
+[ссылка на документацию](https://webpack.js.org/loaders/babel-loader/)
+
+Этот лоадер позволяет использовать babel для проекта с webpack. При использовании этого лоадера важно исключить из обработки такие директории, как node_modules с помощью поля **exclude**.
+
+```javascript
+npm i -D babel-loader
+```
+
+Конфигурация лоадера:
+
+```javascript
+module.exports = {
+  rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+            },
+          ],
+        },
+```
+### <a name="css-loader"></a> css-loader
+
+[ссылка на документацию](https://webpack.js.org/loaders/css-loader/)
+
+Этот лоадер позволяет загружать модули с расширением css.
+
+```javascript
+npm i -D css-loader
+```
+
+Конфигурация лоадера:
+
+```javascript
+{
+  test: /\.(css)$/,
+  use: [
+    {
+      loader: 'css-loader',
+    },
+  ],
+}
+```
+
+### <a name="style-loader"></a> style-loader
+
+[ссылка на документацию](https://webpack.js.org/loaders/style-loader/)
+
+Этот лоадер добавляет на html страницу стили, сгенерированные при помощи css-loader, при помощи блока style.
+
+```javascript
+npm i -D css-loader
+```
+
+Конфигурация лоадера:
+
+```javascript
+{
+  test: /\.(css)$/,
+  use: [
+    {
+      loader: 'style-loader',
+    },
+    {
+      loader: 'css-loader',
+    },
+  ],
+}
+```
+
+При композиции лоадеры применяются к файлам в обратном порядке. В данном случае к файлам с расширением css сначала применится css-loader и уже после результат его работы передастся в style-loader.
+
+
+### <a name="sass-loader"></a> sass-loader
+
+[ссылка на документацию](https://webpack.js.org/loaders/sass-loader/)
+
+Этот лоадер позволяет работать с файлами с раширением scss. Требует для работы установку пакета node-sass, который и занимается преобразованием scss в обычный css.
+
+```javascript
+npm i -D node-sass sass-loader
+```
+
+Конфигурация лоадера:
+
+```javascript
+{
+  test: /\.(s[ca]ss)$/,
+  use: [
+    {
+      loader: 'style-loader',
+    },
+    {
+      loader: 'css-loader',
+    },
+    {
+      loader: 'sass-loader',
+    },
+  ],
+}
+```
+При композиции лоадеров и отсутствии дополнительных настроек можно использовать сокращенную запись, просто перечисляя строковые названия лоадеров в массиве use.
+
+```javascript
+{
+  test: /\.(s[ca]ss)$/,
+  use: [
+    // Creates `style` nodes from JS strings
+    "style-loader",
+    // Translates CSS into CommonJS
+    "css-loader",
+    // Compiles Sass to CSS
+    "sass-loader",
+  ],
+}
+```
