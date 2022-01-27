@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniSccExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'prodiction';
@@ -7,7 +7,7 @@ module.exports = (env, argv) => {
 
   const getStyleLoaders = () => {
     return [
-      isProd ? MiniSccExtractPlugin.loader : 'style-loader',
+      isProd ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
     ];
   };
@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
     if (isProd) {
       return [
         ...plugins,
-        new MiniSccExtractPlugin({
+        new MiniCssExtractPlugin({
           filename: 'main-[hash:8].css',
         }),
       ];
